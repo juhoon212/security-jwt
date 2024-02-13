@@ -23,14 +23,13 @@ public class JoinService {
         Boolean isExist = userRepository.existsByUsername(username);
 
         if(isExist) {
-
             return;
         }
 
         UserEntity data = new UserEntity();
 
         data.setUsername(username);
-        data.setPassword(password);
+        data.setPassword(passwordEncoder.encode(password));
         data.setRole("ROLE_ADMIN");
 
         userRepository.save(data);
