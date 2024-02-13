@@ -1,6 +1,7 @@
 package com.example.securityjwt.jwt;
 
 import io.jsonwebtoken.Jwts;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 @Component
+@Slf4j
 public class JWTUtil {
 
     private SecretKey secretKey;
@@ -55,13 +57,17 @@ public class JWTUtil {
 
     public String createJWT(String username, String role, Long expiredMs) {
 
-        return Jwts.builder()
+        String token = Jwts.builder()
                 .claim("username", username)
                 .claim("role", role)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + expiredMs))
                 .signWith(secretKey)
                 .compact();
+
+        log.info("token created! = {}", token);
+
+        return token;
     }
 
 
