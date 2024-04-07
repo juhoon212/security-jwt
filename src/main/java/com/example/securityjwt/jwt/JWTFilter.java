@@ -52,11 +52,23 @@ public class JWTFilter extends OncePerRequestFilter {
 
         CustomUserDetails customUserDetails = new CustomUserDetails(userEntity);
 
+
+        //Principal(접근 주체) : 보호 받는 리소스에 접근하는 대상
+        //Credential(비밀번호) : 리소스에 접근하는 대상의 비밀번호
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                 customUserDetails, null, customUserDetails.getAuthorities());
 
         SecurityContextHolder.getContext().setAuthentication(authToken);
 
         filterChain.doFilter(request, response);
+    }
+
+    public static void main(String[] args) {
+
+        int i1 = 5;
+        int i2 = 3;
+
+
+        System.out.println(i1 | i2);
     }
 }
