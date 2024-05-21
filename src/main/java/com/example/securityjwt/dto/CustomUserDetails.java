@@ -9,10 +9,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
     private final UserEntity userEntity;
+
+    public CustomUserDetails(UserEntity userEntity) {
+        this.userEntity = userEntity;
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

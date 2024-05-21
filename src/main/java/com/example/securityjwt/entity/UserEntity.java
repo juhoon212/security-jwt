@@ -7,11 +7,14 @@ import jakarta.persistence.Id;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
+@Scope("prototype")
 public class UserEntity {
 
     @Id
